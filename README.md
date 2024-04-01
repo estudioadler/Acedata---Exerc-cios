@@ -43,22 +43,3 @@ Este repositório contém a solução para os desafios técnicos da avaliação 
 3. Instale as dependências: `npm install`.
 4. Execute o projeto: `npm run dev`.
 5. Acesse a aplicação em http://localhost:3000.
-
-**# Apresentação**
-
-Para a apresentação do sistema, esteja preparado para:
-
-* Explicar o funcionamento dos desafios e como as soluções foram implementadas.
-* Responder perguntas sobre o código e suas funcionalidades.
-* Realizar alterações e testes no código ao vivo, conforme solicitado pela comissão.
-
-**# Considerações**
-
-* A experiência do usuário é de sua responsabilidade, mas garanta que os requisitos sejam atendidos.
-* Sinta-se à vontade para adaptar e aprimorar as soluções.
-* Este repositório serve como base para sua demonstração, você pode personalizá-lo como desejar.
-
-**# Conclusão**
-
-Este projeto demonstra suas habilidades em desenvolvimento web com as tecnologias Next.js, React, TypeScript e Tailwind CSS. 
-Apresente-o com confiança e entusiasmo, destacando seus conhecimentos e capacidade de resolução de problemas.
