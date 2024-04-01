@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Readme - Desafios para Vaga de Estágio - Next.js, React, TypeScript e Tailwind CSS
 
-## Getting Started
+**# Introdução**
 
-First, run the development server:
+Este repositório contém a solução para os desafios técnicos da avaliação para vaga de estágio, utilizando as tecnologias Next.js, React, TypeScript e Tailwind CSS.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**# Objetivos**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Demonstrar conhecimento em lógica de programação e capacidade de desenvolver soluções de software.
+* Apresentar familiaridade com as tecnologias mencionadas.
+* Habilidade para implementar interfaces de usuário intuitivas e responsivas.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**# Desafios**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**## 1. Cálculo de Salário para Empregado Horista**
 
-## Learn More
+* O sistema calcula o salário bruto, salário família e salário líquido de um empregado horista.
+* Considera o valor da hora trabalhada, horas trabalhadas no mês e número de filhos menores de 14 anos.
+* Aplica diferentes regras de cálculo de salário família de acordo com o salário bruto.
 
-To learn more about Next.js, take a look at the following resources:
+**## 2. Análise de Sequência de Números**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* O sistema recebe uma sequência de números digitada pelo usuário.
+* Apresenta a sequência original, o menor e o maior número da sequência.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**## 3. Sequência de Fibonacci**
 
-## Deploy on Vercel
+* O sistema recebe um valor N e:
+    * Imprime os N primeiros números da sequência de Fibonacci.
+    * Verifica se N pertence à sequência de Fibonacci.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**# Tecnologias Utilizadas**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* **Next.js:** Framework React para renderização de páginas lado do servidor e roteamento.
+* **React:** Biblioteca JavaScript para construção de interfaces de usuário.
+* **TypeScript:** Linguagem superconjunto do JavaScript que adiciona tipagem estática.
+* **Tailwind CSS:** Framework CSS que facilita a criação de interfaces responsivas.
+
+**# Instruções para Execução**
+
+1. Clone o repositório.
+2. Acesse o diretório do projeto.
+3. Instale as dependências: `npm install`.
+4. Execute o projeto: `npm run dev`.
+5. Acesse a aplicação em http://localhost:3000.
+
+**# Apresentação**
+
+Para a apresentação do sistema, esteja preparado para:
+
+* Explicar o funcionamento dos desafios e como as soluções foram implementadas.
+* Responder perguntas sobre o código e suas funcionalidades.
+* Realizar alterações e testes no código ao vivo, conforme solicitado pela comissão.
+
+**# Considerações**
+
+* A experiência do usuário é de sua responsabilidade, mas garanta que os requisitos sejam atendidos.
+* Sinta-se à vontade para adaptar e aprimorar as soluções.
+* Este repositório serve como base para sua demonstração, você pode personalizá-lo como desejar.
+
+**# Conclusão**
+
+Este projeto demonstra suas habilidades em desenvolvimento web com as tecnologias Next.js, React, TypeScript e Tailwind CSS. 
+Apresente-o com confiança e entusiasmo, destacando seus conhecimentos e capacidade de resolução de problemas.
