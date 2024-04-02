@@ -8,58 +8,50 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 // Função para encontrar o menor e o maior número em uma sequência
-function encontrarMinMax(sequencia: number[]): { menor: number, maior: number } {
-    let menor = sequencia[0];
-    let maior = sequencia[0];
-
+function encontrarMinMax(sequencia: number[]): { menorN: number, maiorN: number } {
+    let menorN = sequencia[0];
+    let maiorN = sequencia[0];
+    // Encontrar o menor e o maior número na sequência
     for (let i = 1; i < sequencia.length; i++) {
-        if (sequencia[i] < menor) {
-            menor = sequencia[i];
+        if (sequencia[i] < menorN) {
+            menorN = sequencia[i];
         }
-        if (sequencia[i] > maior) {
-            maior = sequencia[i];
+        if (sequencia[i] > maiorN) {
+            maiorN = sequencia[i];
         }
-    } return { menor, maior };
+    } return { menorN, maiorN };
 }
 
 export default function Home() {
+    // Definir o estado das variáveis
     const [quantidade, setQuantidade] = useState(0);
     const [sequencia, setSequencia] = useState<number[]>([]);
-    const [menor, setMenor] = useState<number | null>(null);
-    const [maior, setMaior] = useState<number | null>(null);
+    const [menorN, setMenor] = useState<number | null>(null);
+    const [maiorN, setMaior] = useState<number | null>(null);
     const [erro, setErro] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
-
-    const resultado = (event: React.MouseEvent) => {
-        event.preventDefault();
-      
-        if (sequencia === undefined || quantidade === 0) {
-          setErro('Preenchimento obrigatório');
-        } else {
-          setErro('');
-          setLoading(true);
-          setTimeout(() => {
-            // Encontrar o menor e o maior número na sequência
-            const { menor, maior } = encontrarMinMax(sequencia);
-      
-            // Atualizar os estados com o menor e o maior número
-            setMenor(menor);
-            setMaior(maior);
-      
-            setLoading(false);
-            toast("Concluído com sucesso");
-          }, 1000);
-        }
-      };
       
     // Função para lidar com a submissão do formulário
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
+        // Verificar se o preenchimento dos campos foi correto
+        if (sequencia === undefined || quantidade === 0) {
+            setErro('Preenchimento obrigatório');
+            return;
+        } else {
+            setErro('');
+            setLoading(true);
+        }
         // Encontrar o menor e o maior número na sequência
-        const { menor, maior } = encontrarMinMax(sequencia);
+        const { menorN, maiorN } = encontrarMinMax(sequencia);
         // Atualizar os estados com o menor e o maior número
-        setMenor(menor);
-        setMaior(maior);
+        setMenor(menorN);
+        setMaior(maiorN);
+        // Aguardar 1 segundo antes de mostrar o resultado
+        setTimeout(() => {
+            setLoading(false);
+            toast("Concluído com sucesso");
+        }, 1000);
     };
 
     // Função para lidar com a adição de números à sequência
@@ -68,11 +60,11 @@ export default function Home() {
             setErro('Digite apenas números');
             return;
         }
-
-        setSequencia([...sequencia, parseFloat(numero)]);
+        // Adicionar o número à sequência
+        setSequencia([...sequencia, parseFloat(numero)]); 
         setErro('');
     }
-
+    // Função para verificar se é um número
     function isNumber(valor: string) {
         return !isNaN(parseFloat(valor));
     }
@@ -110,7 +102,7 @@ export default function Home() {
                     <Button
                         variant="default"
                         className='w-full bg-neutral-900 hover:bg-neutral-700 text-white font-bold py-2 px-4 rounded mt-4'
-                        onClick={resultado}
+                        type="submit"
                         disabled={loading} // Desativa o botão enquanto estiver carregando
                     >
                         {loading ? ( // Se estiver carregando, mostra o componente de carga, senão mostra o texto 'Calcular'
@@ -124,12 +116,13 @@ export default function Home() {
                     </Button>
                     <Button variant={'outline'} className='w-full' onClick={() => window.location.reload()}>Limpar</Button>
                 </form>
-                { !loading && (menor || maior ) ? (
+                 {/* Verificar se a sequência foi preenchida antes de mostrar os resultados */}
+                { !loading && (menorN || maiorN ) ? ( // Se estiver carregando, mostra o componente de carregamento, senão mostra os resultados
                     <div className="flex flex-col">
                         <h2>Resultado:</h2>
                         <p>Sequência digitada: {JSON.stringify(sequencia)}</p>
-                        <p>Menor número: {menor}</p>
-                        <p>Maior número: {maior}</p>
+                        <p>Menor número: {menorN}</p>
+                        <p>Maior número: {maiorN}</p>
                     </div>
                 ) : (
                     <></>

@@ -7,21 +7,22 @@ import React, { useState } from 'react';
 import { toast } from 'sonner';
 
 export default function Fibonacci() {
+  // Definir o estado das variáveis
   const [numeroN, setNumeroN] = useState<number>(0);
-  const [sequencia, setSequencia] = useState<number[]>([]);
+  const [sequencia, setSequencia] = useState<number[]>([]); // inicializar com um array vazio
   const [pertence, setPertence] = useState<boolean>(false);
   const [erro, setErro] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-
+  // Função para lidar com a submissão do formulário
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const valor = parseInt(event.target.value, 10);
-    if (!isNaN(valor)) {
-      setNumeroN(valor);
+    if (!isNaN(valor)) { // verifica se é um número não negativ
+      setNumeroN(valor); // atualizar o estado do componente com o valor do input
     }
   };
 
-  const calcularFibonacci = () => {
-    if (!numeroN) {
+  const calcularFibonacci = () => { // Função para calcular a sequência de Fibonacci
+    if (!numeroN) { // Verifica se o número é inválido
       setErro('Por favor, digite um número.');
       return;
     } else {
@@ -34,20 +35,20 @@ export default function Fibonacci() {
             }, 1000);
     }
 
-    if (!numeroN) return;
+    if (!numeroN) return; // se o número for inválido, não calcula
 
-    const novaSequencia: number[] = [];
+    const novaSequencia: number[] = []; // cria uma nova sequência vazia para armazenar os números da sequência
     let a = 1;
     let b = 1;
-    for (let i = 0; i < numeroN; i++) {
+    for (let i = 0; i < numeroN; i++) { // calcula a sequência de Fibonacci ate o número informado pelo usuário
       novaSequencia.push(a);
       const proximo = a + b;
       a = b;
       b = proximo;
     }
 
-    let encontrado = false;
-    while (a <= numeroN) {
+    let encontrado = false; // indica se o número informado está na sequência
+    while (a <= numeroN) { // verifica se o número informado está na sequência
       if (a === numeroN) {
         encontrado = true;
         break;
