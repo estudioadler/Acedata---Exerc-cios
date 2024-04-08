@@ -1,4 +1,4 @@
-'use client'
+'use client' 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,31 +23,51 @@ export default function Home() {
 
   // Funções de manipulação de estado para os inputs
   const handleSalarioHoraChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSalarioHora(e.target.value); // Atualizar o estado com o valor do input
+    const salarioH = parseFloat(e.target.value).toString();
+    setSalarioHora(salarioH); // Atualizar o estado com o valor do input
     setErroSalarioHora(''); // Limpar o estado de erro
   };
 
   const handleHorasTrabalhadasChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHorasTrabalhadas(e.target.value);
-    setErroHorasTrabalhadas(''); 
+    const horasTrabalhadas = parseFloat(e.target.value).toString();
+    setHorasTrabalhadas(horasTrabalhadas);
+    setErroHorasTrabalhadas('');
   };
 
   const handleFilhosChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilhos(e.target.value);
-    setErroFilhos('');
+    const filhos = parseInt(e.target.value).toString();
+    setFilhos(filhos);
+    setErroFilhos(''); 
   };
+
+
   // Função para calcular o salário e exibir os resultados
   const calcularSalario = (event: React.MouseEvent) => {
     event.preventDefault(); // Previnir o comportamento padrão do formulário 
     // Verificar se todos os campos foram preenchidos
-    if (!salarioHora || !horasTrabalhadas || !filhos) {
+    if (!salarioHora || salarioHora === '' ) {
       setErroSalarioHora('Preenchimento obrigatório');
+      return; // Stop if salaryHora is empty
+    } else if (isNaN(parseFloat(salarioHora))) {
+      setErroSalarioHora('Por favor, insira um valor.');
+      return; // Stop if salaryHora is not a number
+    }
+  
+    if (!horasTrabalhadas || horasTrabalhadas === '') {
       setErroHorasTrabalhadas('Preenchimento obrigatório');
+      return; // Stop if horasTrabalhadas is empty
+    } else if (isNaN(parseFloat(horasTrabalhadas))) {
+      setErroHorasTrabalhadas('Por favor, insira um valor.');
+      return; // Stop if horasTrabalhadas is not a number
+    }
+  
+    if (!filhos || filhos === '') {
       setErroFilhos('Preenchimento obrigatório');
-    } else {
-      setErroSalarioHora('');
-      setErroHorasTrabalhadas('');
-      setErroFilhos('');
+      return; // Stop if filhos is empty
+    } else if (isNaN(parseInt(filhos))) {
+      setErroFilhos('Por favor, insira um valor.');
+      return; // Stop if filhos is not a number
+    }
 
       // Calcular o salário bruto
       let salarioBruto = Number(salarioHora) * Number(horasTrabalhadas);
@@ -73,7 +93,6 @@ export default function Home() {
         setLoading(false);
         toast("Cálculo concluído com sucesso!");
       }, 1000);
-    }
   };
 
   return (
@@ -83,22 +102,22 @@ export default function Home() {
           <h2 className='text-xl font-bold mb-4'>Cálculo de Salário Horista</h2>
           <Label className='flex flex-col text-sm gap-2'>Salário por hora:</Label>
           <Input
-            type="text"
+            type="number"
             required
             value={salarioHora}
             onChange={handleSalarioHoraChange}
-            placeholder='Ex: 18 ou 18.50'
+            placeholder='Ex: 18 ou 18.54'
           />
           {erroSalarioHora && <p className="text-red-500 text-xs">{erroSalarioHora}</p>}
           <Label className='flex flex-col text-sm gap-2'>Horas trabalhadas no mês:</Label>
           <Input
             type="number"
-            min={'0'}
-            max={'220'}
+            pattern="[0-9]{3}:[0-9]{2}"
+            maxLength={5}
             required
             value={horasTrabalhadas}
             onChange={handleHorasTrabalhadasChange}
-            placeholder='Ex: 160 ou 160.50'
+            placeholder='Ex: 160 ou 160.59'
           />
           {erroHorasTrabalhadas && <p className="text-red-500 text-xs">{erroHorasTrabalhadas}</p>}
           <Label className='flex flex-col text-sm gap-2'>Filhos menores de 14 anos:</Label>
@@ -108,6 +127,7 @@ export default function Home() {
             value={filhos}
             onChange={handleFilhosChange}
             placeholder='Ex: 2'
+            min={'0'}
           />
           {erroFilhos && <p className="text-red-500 text-xs">{erroFilhos}</p>}
           <Button
